@@ -1,4 +1,4 @@
-package main.java.com.company.Figures;
+package com.company.Figures;
 
 public class axisPoint extends Point {
     private String axis;

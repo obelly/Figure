@@ -1,8 +1,8 @@
-package main.java.com.company.Creator;
+package com.company.Creator;
 
-import main.java.com.company.Figures.Figure;
-import main.java.com.company.Figures.Point;
-import main.java.com.company.Figures.Polygon;
+import com.company.Figures.Figure;
+import com.company.Figures.Point;
+import com.company.Figures.Polygon;
 
 import java.util.ArrayList;
 

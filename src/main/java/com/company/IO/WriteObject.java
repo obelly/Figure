@@ -1,8 +1,8 @@
-package main.java.com.company.IO;
+package com.company.IO;
 
-import main.java.com.company.Creator.FigureCreator;
-import main.java.com.company.Figures.Figure;
-import main.java.com.company.Figures.Point;
+import com.company.Creator.FigureCreator;
+import com.company.Figures.Figure;
+import com.company.Figures.Point;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

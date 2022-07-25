@@ -1,4 +1,4 @@
-package main.java.com.company.IO;
+package com.company.IO;
 
 import java.io.*;
 

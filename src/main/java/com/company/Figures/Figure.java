@@ -1,13 +1,14 @@
-package main.java.com.company.Figures;
+package com.company.Figures;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-@JsonIgnoreProperties ({"perimeter", "square", "radius", "centerFigure"})
+
 public abstract class Figure implements Serializable {
     public ArrayList<Point> points;
+
     double radius;
 
     public Figure (ArrayList<Point> points) {
@@ -50,6 +51,7 @@ public abstract class Figure implements Serializable {
         return Math.abs(square / 2);
     }
     public Point getCenterFigure(){
+
         double minX = points.get(0).getX();
         double maxX = points.get(0).getX();
         double minY = points.get(0).getY();
@@ -70,26 +72,51 @@ public abstract class Figure implements Serializable {
         }
         return new Point(((maxX+minX) / 2), ((maxY+minY) / 2));
     }
-    protected void move (int a, int b){
+    public void move (Point a){
         for (int i = 0; i < points.size();i++){
-            points.get(i).setX(points.get(i).getX() + a);
-            points.get(i).setY(points.get(i).getY() + b);
+            points.get(i).setX(points.get(i).getX() + a.getX());
+            points.get(i).setY(points.get(i).getY() + a.getY());
         }
     }
-    protected void scale (int num) {
+    public void scale (double num) {
+        Point center = getCenterFigure();
         for (int i = 0; i < points.size(); i++) {
-            points.get(i).setX(((points.get(i).getX() - getCenterFigure().getX() * num) + getCenterFigure().getX()));
-            points.get(i).setY(((points.get(i).getY() - getCenterFigure().getY() * num) + getCenterFigure().getY()));
+            points.get(i).setX((((points.get(i).getX() - center.getX()) * num) + center.getX()));
+            points.get(i).setY((((points.get(i).getY() - center.getY()) * num) + center.getY()));
         }
     }
-    protected void rotate (double angle) {
-        angle += Math.PI / 180;
-        for (int i = 0; i < points.size(); i++) {
-            points.get(i).setX(((points.get(i).getX() - getCenterFigure().getX() * Math.cos(angle)) -
-                                (points.get(i).getY() - getCenterFigure().getY() * Math.cos(angle))));
+    public void rotate (double angle) {
+            double side = 0;
+            angle = Math.toRadians(angle);
+            Point center=getCenterFigure();
+            for (int i = 0; i < points.size(); i++) {
 
-            points.get(i).setX(((points.get(i).getX() - getCenterFigure().getX() * Math.sin(angle)) -
-                                (points.get(i).getY() - getCenterFigure().getY() * Math.sin(angle))));
+                double x= ((points.get(i).getX()-center.getX())*Math.cos(angle)-(points.get(i).getY()-center.getY())*Math.sin(angle));
+                double y= ((points.get(i).getX()-center.getX())*Math.cos(angle)+(points.get(i).getY()-center.getY())*Math.sin(angle));
+                points.set(i,new Point(x+center.getX(),y+center.getY()));
+            }
         }
-    }
+    public boolean containPoint (int x,int y){//int multiplierX,int multiplierY){
+        boolean flag = false;
+        for (int i = 0; i< this.getPoints().size(); i++){
+            int j = i ==this.getPoints().size() - 1 ? 0: i+1;
+            double x1 = this.getPoints().get(i).getX();//*multiplierX;
+            double x2 = this.getPoints().get(j).getX();//*multiplierX;
+            double y1 = this.getPoints().get(i).getY();//*multiplierY;
+            double y2 = this.getPoints().get(j).getY();//*multiplierY;
+
+            if (x2-x1 != 0){
+                double a = (y2-y1) / (x2-x1);
+                double b = y1 - a * x1;
+                if ((Math.abs(y - (int) (a * x + b)) <= 2)) {
+                    flag = true;}
+                else {
+                    if ((Math.abs(x-x1) <= 2) && (y >= Math.min(y1, y2) && y<Math.max(y1,y2))){
+                        flag = true;
+                    }
+                }
+            }
+        }
+        return flag;
+    };
 }

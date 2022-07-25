@@ -1,4 +1,4 @@
-package main.java.com.company.Figures;
+package com.company.Figures;
 
 import java.io.Serializable;
 

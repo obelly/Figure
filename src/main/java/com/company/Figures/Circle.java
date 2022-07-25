@@ -1,4 +1,4 @@
-package main.java.com.company.Figures;
+package com.company.Figures;
 import java.util.ArrayList;
 
 
@@ -27,7 +27,16 @@ public class Circle extends Figure {
 
     }
 
+    @Override
+    public boolean containPoint(int x, int y){//, int multiplierX, int multiplierY) {
+        //boolean flag = false;
+        this.getCenterFigure();
+        //int multiplier = Math.min(multiplierX, multiplierY);
+        double distance = Math.sqrt((Math.pow(x-this.getCenterFigure().getX(),2))//*multiplierX,2))
+                                  + Math.pow(y-this.getCenterFigure().getY(),2));//*multiplierY,2));
+        return (Math.abs(radius-distance)<=2);//*multiplier-distance)<2);
 
+    }
 
 
 }

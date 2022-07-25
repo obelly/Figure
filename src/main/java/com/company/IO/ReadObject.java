@@ -1,6 +1,6 @@
-package main.java.com.company.IO;
+package com.company.IO;
 
-import main.java.com.company.Figures.Figure;
+import com.company.Figures.Figure;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -1,14 +1,15 @@
-package main.java.com.company.JSON;
+package com.company.JSON;
 
-import main.java.com.company.Creator.FigureCreator;
-import main.java.com.company.Figures.Figure;
-import main.java.com.company.Figures.Point;
+import com.company.Creator.FigureCreator;
+import com.company.Figures.Figure;
+import com.company.Figures.Point;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 public class JacksonDemo {
     public static void main(String[] args) throws IOException {
